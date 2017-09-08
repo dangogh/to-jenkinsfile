@@ -1,13 +1,18 @@
 pipeline {
-    agent { docker 'node:6.3' }
+    agent any
     stages {
         stage('build') {
             steps {
-                sh 'pwd'
-                sh 'id'
-
-                checkout scm
-                sh './pkg -l'
+                node {
+                    sh 'pwd'
+                    sh 'hostname'
+                    checkout scm
+                    sh 'ls -la'
+                    sh './pkg -l'
+                }
+                node {
+                    sh 'hostname'
+                }
             }
         }
     }
