@@ -3,6 +3,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'pwd'
+                sh 'id'
+
                 checkout scm
                 sh './pkg -l'
             }
